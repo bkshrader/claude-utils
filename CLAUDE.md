@@ -16,16 +16,45 @@ content, not code that already exists.
 ```
 .claude-plugin/marketplace.json   # marketplace manifest — the registry of plugins
 plugins/<plugin-name>/            # each plugin lives in its own directory
-  .claude-plugin/plugin.json      # plugin manifest (name required; version/description/author)
-  commands/                       # slash commands (*.md)
-  agents/                         # subagents (*.md)
-  skills/<skill-name>/SKILL.md    # skills
-  hooks/hooks.json                # hook definitions
-  .mcp.json                       # MCP servers
+global/                           # NOT a plugin — see below
 ```
 
-`commands/`, `agents/`, `skills/`, `hooks/hooks.json`, and `.mcp.json` are auto-discovered at
-those paths — they only need to be declared in `plugin.json` when placed somewhere else.
+### `global/`
+
+Files meant to be downloaded and placed by hand rather than installed through the plugin
+system — most notably the user-scope `~/.claude/CLAUDE.md`. Nothing here is loaded by the
+marketplace, so it is exempt from the plugin conventions below. Keep it that way: if
+something *can* be a plugin, it belongs in `plugins/`.
+
+### Plugin components
+
+All of these are auto-discovered at the paths shown; they only need declaring in
+`plugin.json` when placed elsewhere. Everything except `plugin.json` lives at the plugin
+root — **not** inside `.claude-plugin/`.
+
+| Component | Path | Notes |
+| --- | --- | --- |
+| Manifest | `.claude-plugin/plugin.json` | Optional. `name` required |
+| Skills | `skills/<name>/SKILL.md` | Preferred way to ship instructions |
+| Commands | `commands/*.md` | Flat-file skills; legacy — prefer `skills/` |
+| Agents | `agents/*.md` | `hooks`, `mcpServers`, `permissionMode` frontmatter is blocked |
+| Hooks | `hooks/hooks.json` | |
+| MCP servers | `.mcp.json` | |
+| LSP servers | `.lsp.json` | |
+| Workflows | `workflows/` | |
+| Output styles | `output-styles/` | |
+| Themes | `themes/` | Experimental — declare under `experimental.themes` |
+| Monitors | `monitors/monitors.json` | Experimental — declare under `experimental.monitors` |
+| Executables | `bin/` | Added to the Bash tool's `PATH` while enabled |
+| Settings | `settings.json` | Claude Code defaults; only `agent` + `subagentStatusLine` honored |
+
+Manifest-only, no directory: `userConfig` (values prompted at enable time — the plugin's own
+config, as opposed to `settings.json` which configures Claude Code), `channels`, and
+`dependencies`.
+
+There is no plugin-supplied `CLAUDE.md` at any scope — a `CLAUDE.md` at the plugin root is
+ignored. To ship instructions, use a skill (loaded on demand) or a `SessionStart` hook
+returning `hookSpecificOutput.additionalContext` (always on, costs context every session).
 
 ## Conventions
 
@@ -36,6 +65,9 @@ those paths — they only need to be declared in `plugin.json` when placed somew
 - Inside plugin files, reference bundled assets via `${CLAUDE_PLUGIN_ROOT}` (absolute path to
   the plugin directory) rather than relative paths — the cwd at runtime is the *user's*
   project, not the plugin.
+- The component path fields in `plugin.json` **replace** the default scan (`agents`,
+  `commands`, `workflows`, `outputStyles`, `experimental.themes`) rather than adding to it.
+  `skills` is the one exception — it adds to the default `skills/` scan.
 - Plugin names are the user-facing namespace (`/plugin-name:command-name`), so keep them
   short and kebab-case.
 
