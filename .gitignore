@@ -1,2 +1,6 @@
 .claude/settings.local.json
 .DS_Store
+
+# Filled-in copies of the templates under global/ contain personal information.
+# The templates themselves are tracked; anything *.local.* is not.
+*.local.md
