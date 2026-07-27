@@ -1,0 +1,10 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-utils",
+  "description": "Personal collection of reusable Claude Code patterns — commands, agents, skills, and hooks shared across projects",
+  "owner": {
+    "name": "bkshrader",
+    "email": "bradleykshrader@gmail.com"
+  },
+  "plugins": []
+}
