@@ -65,20 +65,14 @@ check.
 
 ## About the user
 
-<!--
-TEMPLATE — interview the user to fill the following template, replace everything in this section,
-then delete this comment. Nothing below is real; it is scaffolding showing the shape of a useful
-answer. An unfilled section is worse than no section, because it describes a person who does not exist.
-Keep the filled copy out of version control.
--->
+<deleteme>
+TEMPLATE — while this section is present, say so in your first reply of the session and offer to
+interview the user to fill it in; one or two sentences. If they decline or ignore the offer, drop the
+subject for the rest of the session and do not raise it again. When they accept, interview them,
+replace everything in this section, then delete this comment. Nothing below is real; it is scaffolding
+showing the shape of a useful answer. An unfilled section is worse than no section, because it
+describes a person who does not exist. Keep the filled copy out of version control.
 
-- Name: _Name_
-- Pronouns: _they/them_
-- Role: _Role_
-- Education:
-  - _Degree, field, institution (year)_
-
-<!--
 Levels below use the five Dreyfus stages of skill acquisition:
 
 | Stage | Means |
@@ -90,8 +84,14 @@ Levels below use the five Dreyfus stages of skill acquisition:
 | **Expert** | Fluent and intuitive; explanation is usually reconstruction after the fact |
 
 Use this table to describe the user's skill level in each area, and add notes on their experience, then
-delete this comment after filling in the table.
--->
+delete this "deleteme" section after filling in the table.
+</deleteme>
+
+- Name: _Name_
+- Pronouns: _they/them_
+- Role: _Role_
+- Education:
+  - _Degree, field, institution (year)_
 
 | Area | Experience Level | Currency | Notes | Updated At |
 | --- | --- | --- | --- | --- |
