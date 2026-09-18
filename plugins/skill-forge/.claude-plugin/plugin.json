@@ -1,0 +1,16 @@
+{
+  "name": "skill-forge",
+  "version": "0.1.0",
+  "description": "Author skills for this marketplace from evidence of recurring problems in other projects, and measure them before shipping",
+  "author": {
+    "name": "bkshrader",
+    "email": "bradleykshrader@gmail.com"
+  },
+  "keywords": [
+    "skills",
+    "authoring",
+    "evals",
+    "skillopt",
+    "skilllens"
+  ]
+}

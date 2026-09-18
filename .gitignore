@@ -4,3 +4,11 @@
 # Filled-in copies of the templates under global/ contain personal information.
 # The templates themselves are tracked; anything *.local.* is not.
 *.local.md
+
+# The arXiv non-exclusive-distrib license does not grant redistribution rights.
+# Re-fetch with plugins/skill-forge/docs/fetch-papers.sh.
+plugins/skill-forge/docs/2605.23904-skillopt.pdf
+
+# skill-forge run artifacts (regenerable; evals.json, fixtures/, evidence, and
+# acceptance criteria next to them are committed).
+evals/*/workspace/
